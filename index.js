@@ -1,10 +1,6 @@
 import * as dotenv from "dotenv";
 import { Server } from "@remote-kakao/core";
 import https from "follow-redirects/https.js";
-import { getIpAddress } from "./serverUtils.js";
-
-const ipAddress = getIpAddress();
-console.log(`Server IP address: ${ipAddress}`);
 
 dotenv.config({ path: "./.env" });
 console.log(process.env.OPENAI_API);
