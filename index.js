@@ -73,4 +73,4 @@ server.on("message", async (msg) => {
 	}
 });
 
-server.start(3000);
+server.start(process.env.PORT || 3000);
