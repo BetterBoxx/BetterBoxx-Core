@@ -28,8 +28,7 @@ server.on("message", async (msg) => {
 
 	switch (cmd) {
 		case "ping": // not accurate
-			const timestamp = Date.now();
-			msg.replyText(`${Date.now() - timestamp}ms, pong!`);
+			msg.replyText("Pong!");
 			break;
 		case ">":
 			const allMsg = msg.content.slice(2);
