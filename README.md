@@ -48,10 +48,17 @@ Additionally, attaching messages following `>>` will pass the message to OpenAI 
 
 This is a simple example of a chatbot application that uses the OpenAI API to generate responses. The code can be modified to include more complex functionality, and the messaging functionality can be swapped out for other messaging platforms as needed.
 
+# Using Android as a server
+
+KKS has written a great guide on doing this on Android using Termux. [Link to the guide](https://iris-kilometer-f84.notion.site/readme-43ed9bb956ae44e4824105087c83a1f5)
+
+"If you think you screwed up somewhere, it's better to start over."  
+- KKS
+
 # Credits
 This project uses code from [remote-kakao](https://github.com/remote-kakao) by thoratica (MIT License).
 
-I would like to express our gratitude to the developer of these projects for their valuable contributions to the open-source community.
+I would like to express my gratitude to the developers of these projects for their valuable contributions to the open-source community.
 
 # License
 
