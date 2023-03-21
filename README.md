@@ -49,7 +49,7 @@ Additionally, attaching messages following `>>` will pass the message to OpenAI 
 This is a simple example of a chatbot application that uses the OpenAI API to generate responses. The code can be modified to include more complex functionality, and the messaging functionality can be swapped out for other messaging platforms as needed.
 
 # Credits
-This project uses code from [remote-kakao](https://github.com/remote-kakao) by thoratica.
+This project uses code from [remote-kakao](https://github.com/remote-kakao) by thoratica (MIT License).
 
 I would like to express our gratitude to the developer of these projects for their valuable contributions to the open-source community.
 
