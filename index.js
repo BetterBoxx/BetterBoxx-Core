@@ -20,55 +20,51 @@ const options = {
 server.on("message", async (msg) => {
 	console.log("[" + msg.room + "] " + msg.sender.name + " : " + msg.content);
 
-	const prefix = ">";
-	if (!msg.content.startsWith(prefix)) return;
+	// Command prefix
+	const prefixGPT = ">>";
 
-	const args = msg.content.split(" ");
-	const cmd = args.shift()?.slice(prefix.length);
+	// Early return: Ignore if the message doesn't start with the prefix
+	if (!msg.content.startsWith(prefixGPT)) return;
 
-	switch (cmd) {
-		case "ping": // not accurate
-			msg.replyText("Pong!");
-			break;
-		case ">":
-			const allMsg = msg.content.slice(2);
-			var req = https.request(options, function (res) {
-				var chunks = [];
+	// Parse the command
+	if (msg.content.startsWith(prefixGPT)) {
+		const allMsg = msg.content.slice(2);
+		var req = https.request(options, function (res) {
+			var chunks = [];
 
-				res.on("data", function (chunk) {
-					chunks.push(chunk);
-				});
-
-				res.on("end", function (chunk) {
-					var body = Buffer.concat(chunks);
-					let resExtract = JSON.parse(body.toString());
-					//   For debugging
-					//   console.log(resExtract);
-					console.log("ChatGPT : " + resExtract.choices[0].message.content.trim());
-					msg.replyText(resExtract.choices[0].message.content.trim());
-				});
-
-				res.on("error", function (error) {
-					console.error(error);
-				});
+			res.on("data", function (chunk) {
+				chunks.push(chunk);
 			});
 
-			var postData = JSON.stringify({
-				model: "gpt-3.5-turbo",
-				messages: [
-					{
-						role: "user",
-						content: allMsg,
-					},
-				],
-				temperature: 0.7,
+			res.on("end", function (chunk) {
+				var body = Buffer.concat(chunks);
+				let resExtract = JSON.parse(body.toString());
+				//   For debugging
+				//   console.log(resExtract);
+				console.log("ChatGPT : " + resExtract.choices[0].message.content.trim());
+				msg.replyText(resExtract.choices[0].message.content.trim());
 			});
 
-			req.write(postData);
+			res.on("error", function (error) {
+				console.error(error);
+			});
+		});
 
-			req.end();
+		var postData = JSON.stringify({
+			model: "gpt-3.5-turbo",
+			messages: [
+				{
+					role: "user",
+					content: allMsg,
+				},
+			],
+			temperature: 0.7,
+			user: msg.sender.name,
+		});
 
-			break;
+		req.write(postData);
+
+		req.end();
 	}
 });
 
