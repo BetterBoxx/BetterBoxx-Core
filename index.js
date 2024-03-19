@@ -20,71 +20,48 @@ const options = {
 server.on("message", async (msg) => {
 	console.log("[" + msg.room + "] " + msg.sender.name + " : " + msg.content);
 
-	// Early return: Ignore if the message doesn't start with the prefix
-	if (!msg.content.startsWith(">>")) return;
+	switch (true) {
+		case msg.content.startsWith(">>"):
+			const allMsg = msg.content.slice(2);
+			const req = https.request(options, (res) => {
+				const chunks = [];
 
-	// Parse GPT request
-	if (msg.content.startsWith(">>")) {
-		const allMsg = msg.content.slice(2);
-		var req = https.request(options, function (res) {
-			var chunks = [];
+				res.on("data", (chunk) => {
+					chunks.push(chunk);
+				});
 
-			res.on("data", function (chunk) {
-				chunks.push(chunk);
+				res.on("end", () => {
+					const body = Buffer.concat(chunks);
+					const resExtract = JSON.parse(body.toString());
+					console.log("ChatGPT : " + resExtract.choices[0].message.content.trim());
+					msg.replyText(resExtract.choices[0].message.content.trim());
+				});
+
+				res.on("error", (error) => {
+					console.error(error);
+				});
 			});
 
-			res.on("end", function (chunk) {
-				var body = Buffer.concat(chunks);
-				let resExtract = JSON.parse(body.toString());
-				//   For debugging
-				//   console.log(resExtract);
-				console.log("ChatGPT : " + resExtract.choices[0].message.content.trim());
-				msg.replyText(resExtract.choices[0].message.content.trim());
+			const postData = JSON.stringify({
+				model: "gpt-3.5-turbo",
+				messages: [
+					{
+						role: "user",
+						content: allMsg,
+					},
+				],
+				temperature: 0.7,
+				user: msg.sender.name,
 			});
 
-			res.on("error", function (error) {
-				console.error(error);
-			});
-		});
-
-		var postData = JSON.stringify({
-			model: "gpt-3.5-turbo",
-			messages: [
-				{
-					role: "user",
-					content: allMsg,
-				},
-			],
-			temperature: 0.7,
-			user: msg.sender.name,
-		});
-
-		req.write(postData);
-
-		req.end();
-	}
-
-	// Parse chatbot request
-	if (msg.content.startsWith("/")) {
-		if (msg.room === "KETO" || msg.room === "BLACKDESERT") {
-			msg.replyText("Chatbot command received!");
-		}
-	}
-
-	// Parse ping request
-	if (msg.content.startsWith(">ping")) {
-		msg.replyText("Pong!");
-	}
-
-	// 뭐먹지?
-	if (msg.startsWith("뭐먹지?")) {
-		const fs = require("fs");
-		const foodList = fs
-			.readFileSync("./foodList.txt", "utf8")
-			.split("\n")
-			.filter(Boolean);
-		const randomFood = foodList[Math.floor(Math.random() * foodList.length)];
-		console.log("Random food item: " + randomFood);
+			req.write(postData);
+			req.end();
+			break;
+		case msg.content.startsWith(">ping"):
+			msg.replyText("Pong!");
+			break;
+		default:
+			return;
 	}
 });
 
