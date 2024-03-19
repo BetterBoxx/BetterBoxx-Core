@@ -54,6 +54,8 @@ KKS has written a great guide on doing this on Android using Termux. [Link to th
 
 "If you think you screwed up somewhere, it's better to start over." - KKS
 
+If the link above is broken, refer to archived page. [Link to the archived guide](https://web.archive.org/web/20240319035753/https://iris-kilometer-f84.notion.site/readme-43ed9bb956ae44e4824105087c83a1f5)
+
 # Credits
 This project uses code from [remote-kakao](https://github.com/remote-kakao) by thoratica (MIT License).
 
