@@ -20,14 +20,11 @@ const options = {
 server.on("message", async (msg) => {
 	console.log("[" + msg.room + "] " + msg.sender.name + " : " + msg.content);
 
-	// Command prefix
-	const prefixGPT = ">>";
-
 	// Early return: Ignore if the message doesn't start with the prefix
-	if (!msg.content.startsWith(prefixGPT)) return;
+	if (!msg.content.startsWith(">>")) return;
 
-	// Parse the command
-	if (msg.content.startsWith(prefixGPT)) {
+	// Parse GPT request
+	if (msg.content.startsWith(">>")) {
 		const allMsg = msg.content.slice(2);
 		var req = https.request(options, function (res) {
 			var chunks = [];
@@ -65,6 +62,29 @@ server.on("message", async (msg) => {
 		req.write(postData);
 
 		req.end();
+	}
+
+	// Parse chatbot request
+	if (msg.content.startsWith("/")) {
+		if (msg.room === "KETO" || msg.room === "BLACKDESERT") {
+			msg.replyText("Chatbot command received!");
+		}
+	}
+
+	// Parse ping request
+	if (msg.content.startsWith(">ping")) {
+		msg.replyText("Pong!");
+	}
+
+	// 뭐먹지?
+	if (msg.startsWith("뭐먹지?")) {
+		const fs = require("fs");
+		const foodList = fs
+			.readFileSync("./foodList.txt", "utf8")
+			.split("\n")
+			.filter(Boolean);
+		const randomFood = foodList[Math.floor(Math.random() * foodList.length)];
+		console.log("Random food item: " + randomFood);
 	}
 });
 
