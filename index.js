@@ -1,6 +1,6 @@
 import * as dotenv from "dotenv";
 import { Server } from "@remote-kakao/core";
-import { openAIChat } from "./plugins/openai-gpt.js"; // Importing openAIChat from openai-gpt.js
+import { openAIChat } from "./plugins/openai-gpt/index.js"; // Importing openAIChat from openai-gpt.js
 
 dotenv.config({ path: "./.env" });
 const server = new Server({ useKakaoLink: false });
