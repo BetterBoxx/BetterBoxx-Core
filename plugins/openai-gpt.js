@@ -18,7 +18,6 @@ const prefixGPT = process.env.GPT_PREFIX;
 
 export function openAIChat(msg) {
 	if (msg.content.startsWith(prefixGPT)) {
-		console.log(prefixGPT);
 		const allMsg = msg.content.slice(prefixGPT.length);
 		var req = https.request(options, function (res) {
 			var chunks = [];

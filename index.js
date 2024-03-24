@@ -3,16 +3,23 @@ import { Server } from "@remote-kakao/core";
 import { openAIChat } from "./plugins/openai-gpt.js"; // Importing openAIChat from openai-gpt.js
 
 dotenv.config({ path: "./.env" });
-console.log(process.env.OPENAI_API);
 const server = new Server({ useKakaoLink: false });
 
 // Handle incoming messages
 server.on("message", async (msg) => {
-	const authRoom = process.env.AUTH_ROOM.split(",");										// Authorise the room first
-	if (authRoom.includes(msg.room)) {
+	function processMessage(msg) {
 		// console.log("[" + msg.room + "] " + msg.sender.name + " : " + msg.content);
-		// Add features for all authorised rooms
-		openAIChat(msg); // Using openAIChat from openai-gpt.js
+		// NOTE: Add more features here
+		openAIChat(msg);
+	}
+
+	const useAuth = process.env.USE_AUTH.toUpperCase();
+	const authRoom = process.env.AUTH_ROOM.split(",");
+
+	if (useAuth == "TRUE" && authRoom.includes(msg.room)) {
+		processMessage(msg);
+	} else if (useAuth == "FALSE") {
+		processMessage(msg);
 	}
 
 	// Parse ping request
@@ -22,3 +29,5 @@ server.on("message", async (msg) => {
 });
 
 server.start(process.env.PORT || 3000);
+console.log("Server is running on port " + (process.env.PORT || 3000));
+

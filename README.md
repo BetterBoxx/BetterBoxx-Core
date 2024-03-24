@@ -9,7 +9,7 @@ This repository hosts both server and client codes. The document below explains 
 To get started with this project, first, clone the repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/RixxLx/KakaoSCV.git
+git clone https://github.com/shanefully-done/KakaoSCV.git
 ```
 
 After cloning the repository, navigate to the project directory and install the required dependencies using `npm`.
@@ -27,6 +27,16 @@ Before running the chatbot, you will need to configure the environment variables
 OPENAI_API=YOUR_API_KEY
 PORT=YOUR_PORT #optional
 ```
+
+You can also configure authentication for each room by setting `USE_AUTH` to `TRUE` and `AUTH_ROOM` to the room ID you want to authenticate.
+
+```
+USE_AUTH=TRUE #or FALSE
+AUTH_ROOM=YOUR_ROOM_ID,SECOND_ROOM,THIRD,SO_FORTH
+```
+
+To enhance security, it is advised to rename room names with random strings on your device while using the KakaoSCV client to serve as a secret key.
+
 
 ## Usage
 
