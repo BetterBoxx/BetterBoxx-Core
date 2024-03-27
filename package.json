@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@remote-kakao/core": "^1.0.0-alpha.6",
+    "@remote-kakao/core": "^1.0.7",
     "dotenv": "^16.0.3"
   }
 }

@@ -26,7 +26,7 @@ server.on("message", async (msg) => {
 
 	// Parse ping request
 	if (msg.content.toLowerCase().startsWith("ping!")) {
-		msg.replyText("Pong!");
+		msg.reply("Pong!");
 	}
 });
 
