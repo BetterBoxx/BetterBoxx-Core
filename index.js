@@ -1,6 +1,7 @@
 import * as dotenv from "dotenv";
 import { Server } from "@remote-kakao/core";
 import { openAIChat } from "./plugins/openai-gpt/index.js"; // Importing openAIChat from openai-gpt.js
+import { processKeyword } from "./plugins/keyword-manager/index.js"; // Importing keywordManager from keyword-manager.js
 
 dotenv.config({ path: "./.env" });
 const server = new Server({ useKakaoLink: false });
@@ -11,6 +12,7 @@ server.on("message", async (msg) => {
 		// console.log("[" + msg.room + "] " + msg.sender.name + " : " + msg.content);
 		// NOTE: Add more features here
 		openAIChat(msg);
+		processKeyword(msg);
 	}
 
 	const useAuth = process.env.USE_AUTH.toUpperCase();
@@ -30,4 +32,3 @@ server.on("message", async (msg) => {
 
 server.start(process.env.PORT || 3000);
 console.log("Server is running on port " + (process.env.PORT || 3000));
-
