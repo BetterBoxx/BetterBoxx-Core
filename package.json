@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@remote-kakao/core": "^1.0.7",
+    "discord.js": "^14.14.1",
     "dotenv": "^16.0.3"
   }
 }

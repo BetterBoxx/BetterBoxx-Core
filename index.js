@@ -2,6 +2,8 @@ import * as dotenv from "dotenv";
 import { Server } from "@remote-kakao/core";
 import { openAIChat } from "./plugins/openai-gpt/index.js"; // Importing openAIChat from openai-gpt.js
 import { processKeyword } from "./plugins/keyword-manager/index.js"; // Importing keywordManager from keyword-manager.js
+import { discordReceive } from "./plugins/discord-bridge/index.js"; // Importing discordBridge from discord-bridge.js
+
 
 dotenv.config({ path: "./.env" });
 const server = new Server({ useKakaoLink: false });
@@ -13,6 +15,7 @@ server.on("message", async (msg) => {
 		// NOTE: Add more features here
 		openAIChat(msg);
 		processKeyword(msg);
+		discordReceive(msg);
 	}
 
 	const useAuth = process.env.USE_AUTH.toUpperCase();
