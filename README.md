@@ -37,7 +37,6 @@ AUTH_ROOM=YOUR_ROOM_ID,SECOND_ROOM,THIRD,SO_FORTH
 
 To enhance security, it is advised to rename room names with random strings on your device while using the KakaoSCV client to serve as a secret key.
 
-
 ## Usage
 
 To start the chatbot, run the following command in your terminal:
@@ -66,7 +65,20 @@ KKS has written a great guide on doing this on Android using Termux. [Link to th
 
 If the link above is broken, refer to archived page. [Link to the archived guide](https://web.archive.org/web/20240319035753/https://iris-kilometer-f84.notion.site/readme-43ed9bb956ae44e4824105087c83a1f5)
 
+# Developing Plugins
+
+To develop a plugin for KakaoSCV, follow these steps:
+
+1. **Create a new directory for your plugin**: In the `plugins` folder, create a new directory named after your plugin.
+
+2. **Create a new JavaScript file**: Inside your plugin directory, create a JavaScript file with the same name as your plugin.
+
+3. **Define your plugin**: Define your plugin as an object in your JavaScript file. It should have properties like `name`, `version`, `onLoad`, and `onMessage`.
+
+Use the `openai-gpt` plugin, which is included in this repository, as an example to understand the structure and functionality of a plugin.
+
 # Credits
+
 This project uses code from [remote-kakao](https://github.com/remote-kakao) by thoratica (MIT License).
 
 I would like to express my gratitude to the developers of these projects for their valuable contributions to the open-source community.
