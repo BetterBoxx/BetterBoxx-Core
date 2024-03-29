@@ -2,6 +2,8 @@
 
 This is a simple chatbot application that uses the OpenAI API to generate responses to user inputs. The code is written in Node.js 18 or higher and relies on the [`@remote-kakao/core`](https://github.com/remote-kakao/core) package for its messaging functionality.
 
+This bot also supports plugins via the /plugins directory, allowing users to extend its functionality by adding custom features and integrations. Developers can easily create new plugins and enhance the chatbot's capabilities to suit their specific needs.
+
 This repository hosts both server and client codes. The document below explains configuring server-end of the project. Pasting `reference/client.js` into [Messenger Bot R](https://play.google.com/store/apps/details?id=com.xfl.msgbot&hl=ko&gl=US) should make the client work out of the box.
 
 # Getting Started
