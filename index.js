@@ -10,12 +10,14 @@ const server = new Server({ useKakaoLink: false });
 
 // Handle incoming messages
 server.on("message", async (msg) => {
+	console.log("[" + msg.room + "] " + msg.sender.name + " : " + msg.content);
+	
 	function processMessage(msg) {
-		// console.log("[" + msg.room + "] " + msg.sender.name + " : " + msg.content);
 		// NOTE: Add more features here
-		openAIChat(msg);
+		// openAIChat(msg);
+		scvaiChat(msg);
 		processKeyword(msg);
-		discordReceive(msg);
+		// discordReceive(msg);
 	}
 
 	const useAuth = process.env.USE_AUTH.toUpperCase();
@@ -23,13 +25,20 @@ server.on("message", async (msg) => {
 
 	if (useAuth == "TRUE" && authRoom.includes(msg.room)) {
 		processMessage(msg);
+
+		if (msg.content.startsWith("/?")) {
+			msg.reply(process.env.MSG_HELP);
+		} else if (msg.content.toLowerCase().startsWith("ping!")) {
+			msg.reply("Pong!");
+		}
 	} else if (useAuth == "FALSE") {
 		processMessage(msg);
-	}
 
-	// Parse ping request
-	if (msg.content.toLowerCase().startsWith("ping!")) {
-		msg.reply("Pong!");
+		if (msg.content.startsWith("/?")) {
+			msg.reply(process.env.MSG_HELP);
+		} else if (msg.content.toLowerCase().startsWith("ping!")) {
+			msg.reply("Pong!");
+		}
 	}
 });
 

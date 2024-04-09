@@ -13,6 +13,7 @@
   "dependencies": {
     "@remote-kakao/core": "^1.0.7",
     "discord.js": "^14.14.1",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "node-fetch": "^3.3.2"
   }
 }
