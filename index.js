@@ -2,20 +2,18 @@ import * as dotenv from "dotenv";
 import { Server } from "@remote-kakao/core";
 import { openAIChat } from "./plugins/openai-gpt/index.js"; // Importing openAIChat from openai-gpt.js
 import { processKeyword } from "./plugins/keyword-manager/index.js"; // Importing keywordManager from keyword-manager.js
-import { discordReceive } from "./plugins/discord-bridge/index.js"; // Importing discordBridge from discord-bridge.js
-
+// import { discordReceive } from "./plugins/discord-bridge/index.js"; // Importing discordBridge from discord-bridge.js
 
 dotenv.config({ path: "./.env" });
 const server = new Server({ useKakaoLink: false });
 
 // Handle incoming messages
 server.on("message", async (msg) => {
-	console.log("[" + msg.room + "] " + msg.sender.name + " : " + msg.content);
+	// console.log("[" + msg.room + "] " + msg.sender.name + " : " + msg.content);
 	
 	function processMessage(msg) {
 		// NOTE: Add more features here
-		// openAIChat(msg);
-		scvaiChat(msg);
+		openAIChat(msg);
 		processKeyword(msg);
 		// discordReceive(msg);
 	}
