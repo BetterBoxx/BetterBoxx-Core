@@ -1,4 +1,4 @@
-# KakaoSCV - Chatbot powered by Node.js and OpenAI
+# BetterWagon - Chatbot powered by Node.js and OpenAI
 
 This is a simple chatbot application that uses the OpenAI API to generate responses to user inputs. The code is written in Node.js 18 or higher and relies on the [`@remote-kakao/core`](https://github.com/remote-kakao/core) package for its messaging functionality.
 
@@ -11,13 +11,13 @@ This repository hosts both server and client codes. The document below explains 
 To get started with this project, first, clone the repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/shanefully-done/KakaoSCV.git
+git clone https://github.com/shanefully-done/BetterWagon.git
 ```
 
 After cloning the repository, navigate to the project directory and install the required dependencies using `npm`.
 
 ```bash
-cd KakaoSCV
+cd BetterWagon
 npm install
 ```
 
@@ -37,7 +37,7 @@ USE_AUTH=TRUE #or FALSE
 AUTH_ROOM=YOUR_ROOM_ID,SECOND_ROOM,THIRD,SO_FORTH
 ```
 
-To enhance security, it is advised to rename room names with random strings on your device while using the KakaoSCV client to serve as a secret key.
+To enhance security, it is advised to rename room names with random strings on your device while using the BetterWagon client to serve as a secret key.
 
 ## Usage
 
@@ -69,7 +69,7 @@ If the link above is broken, refer to archived page. [Link to the archived guide
 
 # Developing Plugins
 
-To develop a plugin for KakaoSCV, follow these steps:
+To develop a plugin for BetterWagon, follow these steps:
 
 1. **Create a new directory for your plugin**: In the `plugins` folder, create a new directory named after your plugin.
 
