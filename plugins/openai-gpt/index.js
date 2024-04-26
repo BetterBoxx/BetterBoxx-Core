@@ -29,7 +29,7 @@ export function openAIChat(msg) {
 			res.on("end", function (chunk) {
 				var body = Buffer.concat(chunks);
 				let resExtract = JSON.parse(body.toString());
-				msg.replyText(resExtract.choices[0].message.content.trim());
+				msg.reply(resExtract.choices[0].message.content.trim());
 				return;
 			});
 
