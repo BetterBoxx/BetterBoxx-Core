@@ -37,11 +37,7 @@ USE_AUTH=TRUE #or FALSE
 AUTH_ROOM=YOUR_ROOM_ID,SECOND_ROOM,THIRD,SO_FORTH
 ```
 
-<<<<<<< HEAD
-To enhance security, it is advised to rename room names with random strings on your device while using the KakaoSCV client to serve as a secret key.
-=======
 To enhance security, it is advised to rename room names with random strings on your device while using the BetterWagon client to serve as a secret key.
->>>>>>> prod
 
 ## Usage
 
