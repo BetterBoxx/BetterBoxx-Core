@@ -47,6 +47,12 @@ To start the chatbot, run the following command in your terminal:
 npm start
 ```
 
+To keep the chatbot running indefinitely, use `forever` as follows:
+
+```bash
+forever start index.js
+```
+
 The chatbot will log your OpenAI API to console and start listening on the port specified in the `.env` file or default to port 3000.
 
 ## Functionality
