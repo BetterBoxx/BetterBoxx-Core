@@ -1,5 +1,8 @@
 {
 	"ignore": [
-		"keywordDB.json"
+		"keywordDB.json",
+		"foodDB.json",
+		"ketoDB.json",
+		"suffixDB.json"
 	]
 }
