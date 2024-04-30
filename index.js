@@ -10,7 +10,7 @@ const server = new Server({ useKakaoLink: false });
 // Handle incoming messages
 server.on("message", async (msg) => {
 	// console.log("[" + msg.room + "] " + msg.sender.name + " : " + msg.content);
-	
+
 	function processMessage(msg) {
 		// NOTE: Add more features here
 		openAIChat(msg);
@@ -21,22 +21,36 @@ server.on("message", async (msg) => {
 	const useAuth = process.env.USE_AUTH.toUpperCase();
 	const authRoom = process.env.AUTH_ROOM.split(",");
 
+	function defaultMessages() {
+		switch (true) {
+			case msg.content.startsWith("/? " + process.env.MSG_HELP_ADD):
+				msg.reply(process.env.MSG_HELP_KEYWORD_ADD);
+				break;
+			case msg.content.startsWith("/? " + process.env.MSG_HELP_EDIT):
+				msg.reply(process.env.MSG_HELP_KEYWORD_EDIT);
+				break;
+			case msg.content.startsWith("/? " + process.env.MSG_HELP_REMOVE):
+				msg.reply(process.env.MSG_HELP_KEYWORD_REMOVE);
+				break;
+			case msg.content.startsWith("/? " + process.env.MSG_HELP_LIST):
+				msg.reply(process.env.MSG_HELP_KEYWORD_LIST);
+				break;
+			case msg.content.startsWith("/?"):
+				msg.reply(process.env.MSG_HELP);
+				console.log("/? " + process.env.MSG_HELP_ADD);
+				break;
+			case msg.content.toLowerCase().startsWith("ping!"):
+				msg.reply("Pong!");
+				break;
+		}
+	}
+
 	if (useAuth == "TRUE" && authRoom.includes(msg.room)) {
 		processMessage(msg);
-
-		if (msg.content.startsWith("/?")) {
-			msg.reply(process.env.MSG_HELP);
-		} else if (msg.content.toLowerCase().startsWith("ping!")) {
-			msg.reply("Pong!");
-		}
+		defaultMessages(msg);
 	} else if (useAuth == "FALSE") {
 		processMessage(msg);
-
-		if (msg.content.startsWith("/?")) {
-			msg.reply(process.env.MSG_HELP);
-		} else if (msg.content.toLowerCase().startsWith("ping!")) {
-			msg.reply("Pong!");
-		}
+		defaultMessages(msg);
 	}
 });
 
