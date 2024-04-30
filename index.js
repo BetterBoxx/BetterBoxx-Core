@@ -3,6 +3,7 @@ import { Server } from "@remote-kakao/core";
 import { openAIChat } from "./plugins/openai-gpt/index.js"; // Importing openAIChat from openai-gpt.js
 import { processKeyword } from "./plugins/keyword-manager/index.js"; // Importing keywordManager from keyword-manager.js
 // import { discordReceive } from "./plugins/discord-bridge/index.js"; // Importing discordBridge from discord-bridge.js
+import { randomFood } from "./plugins/random-food/index.js";
 
 dotenv.config({ path: "./.env" });
 const server = new Server({ useKakaoLink: false });
@@ -16,6 +17,7 @@ server.on("message", async (msg) => {
 		openAIChat(msg);
 		processKeyword(msg);
 		// discordReceive(msg);
+		randomFood(msg);
 	}
 
 	const useAuth = process.env.USE_AUTH.toUpperCase();
