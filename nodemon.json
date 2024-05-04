@@ -3,6 +3,7 @@
 		"keywordDB.json",
 		"foodDB.json",
 		"ketoDB.json",
-		"suffixDB.json"
+		"suffixDB.json",
+		"chatLog.json"
 	]
 }
