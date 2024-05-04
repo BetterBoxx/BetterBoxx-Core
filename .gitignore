@@ -131,4 +131,3 @@ dist
 
 # Plugins
 plugins/
-!plugins/openai-gpt
