@@ -2,7 +2,6 @@ import * as dotenv from "dotenv";
 import { Server } from "@remote-kakao/core";
 import { openAIChat } from "./plugins/openai-gpt/index.js"; // Importing openAIChat from openai-gpt.js
 import { processKeyword } from "./plugins/keyword-manager/index.js"; // Importing keywordManager from keyword-manager.js
-// import { discordReceive } from "./plugins/discord-bridge/index.js"; // Importing discordBridge from discord-bridge.js
 import { randomFood } from "./plugins/random-food/index.js";
 
 dotenv.config({ path: "./.env" });
@@ -16,7 +15,6 @@ server.on("message", async (msg) => {
 		// NOTE: Add more features here
 		openAIChat(msg);
 		processKeyword(msg);
-		// discordReceive(msg);
 		randomFood(msg);
 	}
 
@@ -25,6 +23,7 @@ server.on("message", async (msg) => {
 
 	function defaultMessages() {
 		switch (true) {
+			// START: Help messages for keyword-manager
 			case msg.content.startsWith("/? " + process.env.MSG_HELP_ADD):
 				msg.reply(process.env.MSG_HELP_KEYWORD_ADD);
 				break;
@@ -41,8 +40,24 @@ server.on("message", async (msg) => {
 				msg.reply(process.env.MSG_HELP);
 				console.log("/? " + process.env.MSG_HELP_ADD);
 				break;
+			// END: Help messages for keyword-manager
 			case msg.content.toLowerCase().startsWith("ping!"):
 				msg.reply("Pong!");
+				break;
+			case msg.content === "야!":
+				const replies = [
+					"sp?",
+					"sp",
+					"네?",
+					"네",
+					"무엇을 도와드릴까요?",
+					"바쁜데",
+					"아",
+					"왜요",
+					"잠시만 뒤에 다시 불러주실래요?",
+					"사랑해"
+				];
+				msg.reply(replies[Math.floor(Math.random() * replies.length)]);
 				break;
 		}
 	}
