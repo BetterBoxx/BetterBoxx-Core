@@ -27,6 +27,9 @@ server.on("message", async (msg) => {
 	function defaultMessages() {
 		switch (true) {
 			// START: Help messages for keyword-manager
+			case msg.content.startsWith("/? " + process.env.MSG_HELP_SUMMARY):
+				msg.reply(process.env.MSG_HELP_SUMMARY_EXP);
+				break;
 			case msg.content.startsWith("/? " + process.env.MSG_HELP_ADD):
 				msg.reply(process.env.MSG_HELP_KEYWORD_ADD);
 				break;
@@ -58,7 +61,7 @@ server.on("message", async (msg) => {
 					"아",
 					"왜요",
 					"잠시만 뒤에 다시 불러주실래요?",
-					"사랑해"
+					"사랑해",
 				];
 				msg.reply(replies[Math.floor(Math.random() * replies.length)]);
 				break;
