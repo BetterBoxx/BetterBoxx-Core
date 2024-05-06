@@ -4,6 +4,7 @@ import { openAIChat } from "./plugins/openai-gpt/index.js"; // Importing openAIC
 import { processKeyword } from "./plugins/keyword-manager/index.js"; // Importing keywordManager from keyword-manager.js
 import { randomFood } from "./plugins/random-food/index.js";
 import { chatLogger, chatSummary } from "./plugins/chat-summary/index.js";
+import { ootd } from "./plugins/ootd/index.js";
 
 dotenv.config({ path: "./.env" });
 const server = new Server({ useKakaoLink: false });
@@ -19,6 +20,7 @@ server.on("message", async (msg) => {
 		randomFood(msg);
 		chatLogger(msg);
 		chatSummary(msg);
+		ootd(msg);
 	}
 
 	const useAuth = process.env.USE_AUTH.toUpperCase();
@@ -26,10 +28,17 @@ server.on("message", async (msg) => {
 
 	function defaultMessages() {
 		switch (true) {
-			// START: Help messages for keyword-manager
 			case msg.content.startsWith("/? " + process.env.MSG_HELP_SUMMARY):
+			case msg.content.startsWith("/? " + process.env.CHAT_SUMMARY_1):
+			case msg.content.startsWith("/? " + process.env.CHAT_SUMMARY_2):
 				msg.reply(process.env.MSG_HELP_SUMMARY_EXP);
 				break;
+			case msg.content.startsWith("/? " + process.env.MSG_HELP_OOTD):
+			case msg.content.startsWith("/? " + process.env.OOTD_1):
+			case msg.content.startsWith("/? " + process.env.OOTD_2):
+				msg.reply(process.env.MSG_HELP_OOTD_EXP);
+				break;
+			// START: Help messages for keyword-manager
 			case msg.content.startsWith("/? " + process.env.MSG_HELP_ADD):
 				msg.reply(process.env.MSG_HELP_KEYWORD_ADD);
 				break;
@@ -44,7 +53,6 @@ server.on("message", async (msg) => {
 				break;
 			case msg.content.startsWith("/?"):
 				msg.reply(process.env.MSG_HELP);
-				console.log("/? " + process.env.MSG_HELP_ADD);
 				break;
 			// END: Help messages for keyword-manager
 			case msg.content.toLowerCase().startsWith("ping!"):
