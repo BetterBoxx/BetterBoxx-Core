@@ -1,4 +1,4 @@
-# BetterWagon - Chatbot powered by Node.js and OpenAI
+# BetterWagon - Chatbot powered by Node.js
 
 This is a simple chatbot application that uses the OpenAI API to generate responses to user inputs. The code is written in Node.js 18 or higher and relies on the [`@remote-kakao/core`](https://github.com/remote-kakao/core) package for its messaging functionality.
 
@@ -11,7 +11,7 @@ This repository hosts both server and client codes. The document below explains 
 To get started with this project, first, clone the repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/shanefully-done/BetterWagon.git
+git clone https://github.com/BetterWagon/BetterWagon.git
 ```
 
 After cloning the repository, navigate to the project directory and install the required dependencies using `npm`.
@@ -57,15 +57,36 @@ The chatbot will log your OpenAI API to console and start listening on the port 
 
 ## Functionality
 
-The chatbot responds to messages that begin with the `>` character. The chatbot responds to the `>ping` command with a "Pong!" message.
+The chatbot responds to messages that begin with the various commands. A help module is included, so check them out by sending `/?` in chat.
 
-Additionally, attaching messages following `>>` will pass the message to OpenAI gpt-3.5-turbo API, replying to the chat with an AI generated response. Be sure to put a space after `>>` to ensure the command is working.
+The chatbot also responds to the `Ping!` command with a "Pong!" message.
 
-## Conclusion
+Additionally, attaching messages following `>>` will pass the message to OpenAI gpt-3.5-turbo API, replying to the chat with an AI generated response.
 
-This is a simple example of a chatbot application that uses the OpenAI API to generate responses. The code can be modified to include more complex functionality, and the messaging functionality can be swapped out for other messaging platforms as needed.
+## Using a plugin
 
-# Using Android as a server
+In this example, we will use [`keyword-manager`](https://github.com/BetterWagon/keyword-manager) as a plugin.
+
+1. Place the plugin inside `plugins` directory.
+
+2. In `index.js` of BetterWagon's root directory,
+
+	a. At the top of the file, add `import { processKeyword } from "./plugins/keyword-manager/index.js";`
+
+	b. Under `function processMessage`, add imported function and pass incoming `msg` like so:
+
+	```javascript
+	function processMessage(msg) {
+		// NOTE: Add more features here
+		openAIChat(msg);
+	}
+	```
+
+	c. Edit `.env` as required per plugin. Sample .env for `keyword-manager` is already provided in this repository.
+
+# Other information
+
+## Using Android as a server
 
 KKS has written a great guide on doing this on Android using Termux. [Link to the guide](https://iris-kilometer-f84.notion.site/readme-43ed9bb956ae44e4824105087c83a1f5)
 
@@ -73,7 +94,7 @@ KKS has written a great guide on doing this on Android using Termux. [Link to th
 
 If the link above is broken, refer to archived page. [Link to the archived guide](https://web.archive.org/web/20240319035753/https://iris-kilometer-f84.notion.site/readme-43ed9bb956ae44e4824105087c83a1f5)
 
-# Developing Plugins
+## Developing plugins
 
 To develop a plugin for BetterWagon, follow these steps:
 
@@ -85,7 +106,7 @@ To develop a plugin for BetterWagon, follow these steps:
 
 Use the `openai-gpt` plugin, which is included in this repository, as an example to understand the structure and functionality of a plugin.
 
-# Credits
+## Credits
 
 This project uses code from [remote-kakao](https://github.com/remote-kakao) by thoratica (MIT License).
 
