@@ -1,5 +1,6 @@
 import * as dotenv from "dotenv";
 import { Server } from "@remote-kakao/core";
+import { testPlayground, testIncoming } from "./plugins/test-playground/index.js";
 import { openAIChat } from "./plugins/openai-gpt/index.js"; // Importing openAIChat from openai-gpt.js
 import { processKeyword } from "./plugins/keyword-manager/index.js"; // Importing keywordManager from keyword-manager.js
 import { randomFood } from "./plugins/random-food/index.js";
@@ -21,6 +22,9 @@ server.on("message", async (msg) => {
 		chatLogger(msg);
 		chatSummary(msg);
 		ootd(msg);
+
+		// NOTE: Playground script for testing purposes. Comment block before going into production.
+		// testIncoming(msg);
 	}
 
 	const useAuth = process.env.USE_AUTH.toUpperCase();
@@ -87,3 +91,6 @@ server.on("message", async (msg) => {
 
 server.start(process.env.PORT || 3000);
 console.log("Server is running on port " + (process.env.PORT || 3000));
+
+// NOTE: Playground script for testing purposes. Comment block before going into production.
+// testPlayground();
