@@ -1,6 +1,7 @@
 import * as dotenv from "dotenv";
 import { Server } from "@remote-kakao/core";
 import { testPlayground, testIncoming } from "./plugins/test-playground/index.js";
+import { sendToDiscord } from "./plugins/discord-bridge/index.js";
 import { openAIChat } from "./plugins/openai-gpt/index.js"; // Importing openAIChat from openai-gpt.js
 import { processKeyword } from "./plugins/keyword-manager/index.js"; // Importing keywordManager from keyword-manager.js
 import { randomFood } from "./plugins/random-food/index.js";
@@ -16,6 +17,7 @@ server.on("message", async (msg) => {
 
 	function processMessage(msg) {
 		// NOTE: Add more features here
+		sendToDiscord(msg);
 		openAIChat(msg);
 		processKeyword(msg);
 		randomFood(msg);
