@@ -7,6 +7,7 @@ import { processKeyword } from "./plugins/keyword-manager/index.js"; // Importin
 import { randomFood } from "./plugins/random-food/index.js";
 import { chatLogger, chatSummary } from "./plugins/chat-summary/index.js";
 import { ootd } from "./plugins/ootd/index.js";
+import { findDeal } from "./plugins/deal-finder/index.js";
 
 dotenv.config({ path: "./.env" });
 const server = new Server({ useKakaoLink: false });
@@ -24,6 +25,7 @@ server.on("message", async (msg) => {
 		chatLogger(msg);
 		chatSummary(msg);
 		ootd(msg);
+		findDeal(msg);
 
 		// NOTE: Playground script for testing purposes. Comment block before going into production.
 		// testIncoming(msg);
@@ -74,8 +76,7 @@ server.on("message", async (msg) => {
 					"바쁜데",
 					"아",
 					"왜요",
-					"잠시만 뒤에 다시 불러주실래요?",
-					"사랑해",
+					"잠시만 뒤에 다시 불러주실래요?"
 				];
 				msg.reply(replies[Math.floor(Math.random() * replies.length)]);
 				break;
