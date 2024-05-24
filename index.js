@@ -3,6 +3,7 @@ import { Server } from "@remote-kakao/core";
 import { testPlayground, testIncoming } from "./plugins/test-playground/index.js";
 import { sendToDiscord } from "./plugins/discord-bridge/index.js";
 import { openAIChat } from "./plugins/openai-gpt/index.js"; // Importing openAIChat from openai-gpt.js
+import { searchAIChat } from "./plugins/search-gpt/index.js";
 import { processKeyword } from "./plugins/keyword-manager/index.js"; // Importing keywordManager from keyword-manager.js
 import { randomFood } from "./plugins/random-food/index.js";
 import { chatLogger, chatSummary } from "./plugins/chat-summary/index.js";
@@ -20,6 +21,7 @@ server.on("message", async (msg) => {
 		// NOTE: Add more features here
 		sendToDiscord(msg);
 		openAIChat(msg);
+		searchAIChat(msg);
 		processKeyword(msg);
 		randomFood(msg);
 		chatLogger(msg);
