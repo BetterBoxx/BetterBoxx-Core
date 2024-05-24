@@ -66,7 +66,7 @@ server.on("message", async (msg) => {
 				msg.reply(process.env.MSG_HELP_KEYWORD_LIST);
 				break;
 			case msg.content.startsWith("/?"):
-				msg.reply(process.env.MSG_HELP);
+				msg.reply(process.env.MSG_HELP_1 + "\u200b".repeat(500) + process.env.MSG_HELP_2);
 				break;
 			// END: Help messages for keyword-manager
 			case msg.content.toLowerCase().startsWith("ping!"):
