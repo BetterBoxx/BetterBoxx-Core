@@ -99,7 +99,7 @@ server.on("message", async (msg) => {
 });
 
 server.start(process.env.PORT || 3000);
-console.log("Server is running on port " + (process.env.PORT || 3000));
+console.log("BetterWagon Server is running on port " + (process.env.PORT || 3000));
 
 // NOTE: Playground script for testing purposes. Comment block before going into production.
 // testPlayground();
