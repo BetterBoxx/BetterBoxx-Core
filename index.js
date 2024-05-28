@@ -1,6 +1,9 @@
 import * as dotenv from "dotenv";
 import { Server } from "@remote-kakao/core";
-import { testPlayground, testIncoming } from "./plugins/test-playground/index.js";
+import {
+	testPlayground,
+	testIncoming,
+} from "./plugins/test-playground/index.js";
 import { sendToDiscord } from "./plugins/discord-bridge/index.js";
 import { openAIChat } from "./plugins/openai-gpt/index.js"; // Importing openAIChat from openai-gpt.js
 import { searchAIChat } from "./plugins/search-gpt/index.js";
@@ -9,6 +12,7 @@ import { randomFood } from "./plugins/random-food/index.js";
 import { chatLogger, chatSummary } from "./plugins/chat-summary/index.js";
 import { ootd } from "./plugins/ootd/index.js";
 import { findDeal } from "./plugins/deal-finder/index.js";
+import { randomPrize } from "./plugins/random-prize/index.js";
 
 dotenv.config({ path: "./.env" });
 const server = new Server({ useKakaoLink: false });
@@ -28,6 +32,7 @@ server.on("message", async (msg) => {
 		chatSummary(msg);
 		ootd(msg);
 		findDeal(msg);
+		randomPrize(msg);
 
 		// NOTE: Playground script for testing purposes. Comment block before going into production.
 		// testIncoming(msg);
@@ -66,7 +71,9 @@ server.on("message", async (msg) => {
 				msg.reply(process.env.MSG_HELP_KEYWORD_LIST);
 				break;
 			case msg.content.startsWith("/?"):
-				msg.reply(process.env.MSG_HELP_1 + "\u200b".repeat(500) + process.env.MSG_HELP_2);
+				msg.reply(
+					process.env.MSG_HELP_1 + "\u200b".repeat(500) + process.env.MSG_HELP_2
+				);
 				break;
 			// END: Help messages for keyword-manager
 			case msg.content.toLowerCase().startsWith("ping!"):
@@ -99,7 +106,9 @@ server.on("message", async (msg) => {
 });
 
 server.start(process.env.PORT || 3000);
-console.log("BetterWagon Server is running on port " + (process.env.PORT || 3000));
+console.log(
+	"BetterWagon Server is running on port " + (process.env.PORT || 3000)
+);
 
 // NOTE: Playground script for testing purposes. Comment block before going into production.
 // testPlayground();
