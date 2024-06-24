@@ -1,4 +1,4 @@
-# BetterWagon - Chatbot powered by Node.js
+# BetterBoxx - Chatbot powered by Node.js
 
 This is a simple chatbot application that uses the OpenAI API to generate responses to user inputs. The code is written in Node.js 18 or higher and relies on the [`@remote-kakao/core`](https://github.com/remote-kakao/core) package for its messaging functionality.
 
@@ -11,13 +11,13 @@ This repository hosts both server and client codes. The document below explains 
 To get started with this project, first, clone the repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/BetterWagon/BetterWagon.git
+git clone https://github.com/BetterBoxx/BetterBoxx.git
 ```
 
 After cloning the repository, navigate to the project directory and install the required dependencies using `npm`.
 
 ```bash
-cd BetterWagon
+cd BetterBoxx
 npm install
 ```
 
@@ -37,7 +37,7 @@ USE_AUTH=TRUE #or FALSE
 AUTH_ROOM=YOUR_ROOM_ID,SECOND_ROOM,THIRD,SO_FORTH
 ```
 
-To enhance security, it is advised to rename room names with random strings on your device while using the BetterWagon client to serve as a secret key.
+To enhance security, it is advised to rename room names with random strings on your device while using the BetterBoxx client to serve as a secret key.
 
 ## Usage
 
@@ -65,11 +65,11 @@ Additionally, attaching messages following `>>` will pass the message to OpenAI 
 
 ## Using a plugin
 
-In this example, we will use [`keyword-manager`](https://github.com/BetterWagon/keyword-manager) as a plugin.
+In this example, we will use [`keyword-manager`](https://github.com/BetterBoxx/keyword-manager) as a plugin.
 
 1. Place the plugin inside `plugins` directory.
 
-2. In `index.js` of BetterWagon's root directory,
+2. In `index.js` of BetterBoxx's root directory,
 
 	a. At the top of the file, add `import { processKeyword } from "./plugins/keyword-manager/index.js";`
 
@@ -96,7 +96,7 @@ If the link above is broken, refer to archived page. [Link to the archived guide
 
 ## Developing plugins
 
-To develop a plugin for BetterWagon, follow these steps:
+To develop a plugin for BetterBoxx, follow these steps:
 
 1. **Create a new directory for your plugin**: In the `plugins` folder, create a new directory named after your plugin.
 
