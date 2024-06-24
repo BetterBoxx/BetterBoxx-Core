@@ -13,7 +13,7 @@
   "dependencies": {
     "@remote-kakao/core": "^1.0.7",
     "dotenv": "^16.4.5",
-    "keyword-manager": "github:shanefully-done/keyword-manager",
+    "keyword-manager": "github:BetterBoxx/keyword-manager",
     "openai-gpt": "github:BetterBoxx/openai-gpt",
     "random-food": "github:BetterBoxx/random-food"
   }
